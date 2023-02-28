@@ -4,9 +4,15 @@ let spinner = isLoad => {
     else document.querySelector("#spinner").classList.replace("d-flex", "d-none");
 }
 
+// copy email address to clipboard
+let copyEmailAddress = _ => {
+    navigator.clipboard.writeText(localStorage.ns + "@inbox.testmail.app");
+    alert("Copied the email address: " + localStorage.ns + "@inbox.testmail.app");
+}
+
 // user input validation
-let loginValidation = value => {
-    if (value.trim() !== "") return false;
+let loginValidation = elem => {
+    elem.value.trim() !== "" ? elem.parentNode.nextElementSibling.classList.add("d-none") : elem.parentNode.nextElementSibling.classList.remove("d-none");
 }
 
 // check namespace and api key exist or not
@@ -44,13 +50,18 @@ let displayEmail = async _ => {
         await nsKeyFetch(localStorage.ns, localStorage.apikey).then(result => obj = result);
         if (obj.count !== 0) emailStart.innerHTML = "";
 
+        document.getElementById("email-address").innerHTML = `<span onclick="copyEmailAddress();"><i class='bx bx-copy'></i> <span>${localStorage.ns}.{tag}@inbox.testmail.app</span></span>`;
+
         obj.emails.forEach(email => {
             let startCard = document.createElement("div");
             startCard.classList.add("card", "border-info");
             startCard.innerHTML = `
-            <div class="card-header fw-medium">${email.from}</div>
+            <div class="card-header">
+                <h6 class="fw-medium mb-0">${email.from}</h6>
+                <small>${email.envelope_to}</small>
+            </div>
             <div class="card-body">
-                <h5 class="card-title">${email.subject}</h5>
+                <h5 class="card-title fw-bold fs-6">${email.subject}</h5>
                 <p class="card-text text-truncate fw-light">${email.text}</p>
             </div>
             `;
@@ -75,10 +86,7 @@ let displayEmail = async _ => {
 
 // get value from user and check the value is right or wrong then further process
 document.querySelector("#btn-login").addEventListener("click", async _ => {
-    document.querySelectorAll(".login-box input").forEach((e) => {
-        let validationResult = loginValidation(e.value);
-        validationResult === false ? e.parentNode.lastElementChild.classList.add("d-none") : e.parentNode.lastElementChild.classList.remove("d-none");
-    });
+    document.querySelectorAll(".login-box input").forEach((e) => { loginValidation(e); });
 
     const uiAlert = document.querySelectorAll(".login-box .ui-alert");
     for (let alert of uiAlert) if (!alert.classList.contains("d-none")) return false;

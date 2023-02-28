@@ -21,6 +21,10 @@ body {
 }
 
 /* ===== Email ===== */
+#email-address {
+    cursor: copy;
+}
+
 .email-box {
     grid-template-columns: minmax(0, 20rem) auto;
 }
@@ -59,12 +63,21 @@ body {
 }
 
 /* ===== Media Query ===== */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 992px) {
     /* ===== Email ===== */
     .email-box .start {
         position: relative !important;
         left: 0;
         width: 100%;
         opacity: 1;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    /* ===== Email ===== */
+    #email .header div:last-child {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
     }
 }

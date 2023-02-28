@@ -32,18 +32,22 @@
             <div class="brand-logo text-center">
                 <img src="./asset/img/lg-brand.png" alt="testmail logo" class="w-75">
             </div>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="namespace" placeholder="Namespace">
-                <label for="namespace">Namespace</label>
+            <div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="namespace" placeholder="Namespace">
+                    <label for="namespace">Namespace</label>
+                </div>
                 <div class="ui-alert alert alert-warning mt-2 d-none" role="alert">This field is required.</div>
             </div>
-            <div class="position-relative form-floating mb-3">
-                <input type="password" class="form-control pe-5" id="apikey" placeholder="API Key">
-                <label for="apikey">API Key</label>
-                <span id="show-key" class="position-absolute top-50 end-0 translate-middle-y pe-3">
-                    <img src="./asset/img/eye-off.svg" alt="">
-                    <img src="./asset/img/eye.svg" alt="" class="d-none">
-                </span>
+            <div>
+                <div class="position-relative form-floating mb-3">
+                    <input type="password" class="form-control pe-5" id="apikey" placeholder="API Key">
+                    <label for="apikey">API Key</label>
+                    <span id="show-key" class="position-absolute top-50 end-0 translate-middle-y pe-3">
+                        <img src="./asset/img/eye-off.svg" alt="">
+                        <img src="./asset/img/eye.svg" alt="" class="d-none">
+                    </span>
+                </div>
                 <div class="ui-alert alert alert-warning mt-2 d-none" role="alert">This field is required.</div>
             </div>
             <button type="button" class="btn btn-outline-secondary text-uppercase w-100" id="btn-login">Login <i class="bx bx-log-in-circle"></i></button>
@@ -61,11 +65,14 @@
 <!-- Email -->
 <section id="email" class="d-none">
     <div class="container">
-        <div class="d-flex justify-content-between justify-content-md-end mb-3">
-            <button class="btn btn-sm btn-outline-success d-md-none" id="btn-toggle"><i class='bx bx-menu'></i></button>
-            <button class="btn btn-sm btn-danger" id="btn-logout">Logout</button>
+        <div class="header d-flex justify-content-between justify-content-lg-end mb-3">
+            <button class="btn btn-sm btn-outline-success d-lg-none" id="btn-toggle"><i class='bx bx-menu'></i></button>
+            <div>
+                <small id="email-address" class="text-muted"></small>
+                <button class="btn btn-sm btn-danger" id="btn-logout">Logout</button>
+            </div>
         </div>
-        <div class="email-box position-relative d-md-grid gap-3">
+        <div class="email-box position-relative d-lg-grid gap-3">
             <div class="start position-absolute d-flex flex-column gap-2 bg-white p-3 border rounded z-1 overflow-y-auto">
                <h6 class="text-muted text-center">Empty</h6>
             </div>
